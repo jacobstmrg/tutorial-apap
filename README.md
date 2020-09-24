@@ -1,3 +1,3 @@
 # Tutorial APAP
 ## Authors
-* **<Jacob Marulitua Ido Situmorang>** - *<1806185361>* - *<B>*
+* **Jacob Marulitua Ido Situmorang** - **1806185361** - **APAP - B**
