@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Resep</title>
+</head>
+<body>
+    <h2>Informasi Resep</h2>
+    <h3 th:text="'Nomor resep: '+ ${resep.noResep}"></h3>
+    <h3 th:text="'Nama dokter: '+ ${resep.namaDokter}"></h3>
+    <h3 th:text="'Nama pasien: '+ ${resep.namaPasien}"></h3>
+    <h3 th:text="'Catatan: '+ ${resep.catatan}"></h3>
+    <a href="/resep/viewall">Kembali</a>
+</body>
+</html>
