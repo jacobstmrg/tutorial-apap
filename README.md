@@ -74,3 +74,4 @@ Resep tersebut saya tambahkan dengan link berikut "http://localhost:8080/resep/a
 
 ### What I did not understand
 -[]Apakah untuk membuat fitur dari fungsi program ini hanya dapat dilakukan didalam control? Atau ada cara lain untuk memodifikasi data yang ada?
+-[]Apa yang membedakan pertimbangan penggunaan dari Spring dan Django? Apakah ada keuntungan jika memakai Spring?
