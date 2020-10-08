@@ -36,3 +36,42 @@ Fungsi dari @PathVariable adalah untuk mengekstrak nilai dari URI. @PathVariable
 
 ### What I did not understand
 -[]Apa yang membedakan pertimbangan penggunaan dari Spring dan Django? Apakah ada keuntungan jika memakai Spring?
+
+
+## Tutorial 2
+### What I have learned today
+Pada hari ini saya sudah lumayan terbiasa untuk memakai Spring dalam lab ini. Saya sudah mencoba untuk mengimplementasikan fitur-fitur yang saya buat pada controller dari aplikasi ini. Saya juga membuat html baru yang fungsinya memberi tahu user jika suatu fungsi sudah berhasil dilakukan seperti update catatan dan delete resep. Semua itu terhubung kepada database yaitu list dari resep itu sendiri sehingga jika dicek pada view all resep, maka resep tersebut sudah terupdate atau terhapus.
+
+### Pertanyaan pada tutorial
+1. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut:
+http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20F
+asilkom&catatan=Semangat
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+Saat membuka link tersebut, terjadi error yang meminta referensi dari template "add-resep". Pada controller, fungsi memanggil halaman "add-resep" yang menjadi template, tetapi template tersebut belum dibuat sehingga terjadi error ketika membuka halaman tersebut. Yang harus kita lakukan untuk memperbaiki masalah tersebut adalah membuat template yang bernama "add-resep.html" sehingga fungsi pada controller dapat memanggil template yang sudah dibuat.
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan
+implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam
+konteks service dan controller yang telah kamu buat
+Anotasi @Autowired memberikan kontrol yang lebih baik terhadap autowiring. Anotasi @Autowired bisa digunakan untuk melakukan autowire bean pada class seperti @Repository, @Servire, @Controller, dan @Component. @Autowired akan melakukan inisialisasi terhadap class tersebut, dan lalu mengisi (inject) semua kebutuhannya (dependency). Untuk injection ini, kita juga tidak perlu lagi menyediakan setter method maupun menambahkan argumen di constructor.
+
+3. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut:
+http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20F
+asilkom Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+Saat saya mengakses link tersebut, muncul halaman error yang bertuliskan "Whitelabel Error Page". Hal ini disebabkan oleh kurangnya atribut yang dibutuhkan untuk menambahkan resep. Pada controller, fitur menambahkan resep memerlukan atribut "catatan" yang tidak ada pada link tersebut sehingga ketika diakses, terjadi error.
+
+4. Jika Papa APAP ingin melihat resep untuk pasien yang bernama Quanta, link apa yang
+harus diakses?
+Pada program ini tidak ada fitur yang dapat melihat resep dengan menggunakan nama pasien. Jika Papa APAP sudah tahu nomor resep dari pasien Quanta (misalnya 1), maka Papa APAP dapat mengakses link "http://localhost:8080/resep/view/no-resep/1". Tetapi jika Papa APAP tidak mengetahui nomor resep dari pasien Quanta, maka Papa Apap harus mencarinya melewati http://localhost:8080/resep/viewall yang akan menampilkan semua resep dan mencarinya pada halaman itu.
+
+5. Tambahkan 1 contoh resep lainnya sesukamu. Lalu cobalah untuk mengakses
+http://localhost:8080/resep/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+Saya menambahkan sebuah resep dengan data sebagai berikut:
+Nomor Resep: 2
+Nama Dokter: Pasti Pasti
+Nama Pasien: Jacob Situmorang
+Catatan: Mantap
+Resep tersebut saya tambahkan dengan link berikut "http://localhost:8080/resep/add?noResep=2&namaDokter=Pasti%20Pasti&namaPasien=Jacob%20Situmorang&catatan=Mantap". Setelah mengakses halaman view all resep, tampilan halaman tersebut sebagai berikut. Link gambar: (https://ibb.co/LPSNnJM)
+
+### What I did not understand
+-[]Apakah untuk membuat fitur dari fungsi program ini hanya dapat dilakukan didalam control? Atau ada cara lain untuk memodifikasi data yang ada?
+-[]Apa yang membedakan pertimbangan penggunaan dari Spring dan Django? Apakah ada keuntungan jika memakai Spring?
