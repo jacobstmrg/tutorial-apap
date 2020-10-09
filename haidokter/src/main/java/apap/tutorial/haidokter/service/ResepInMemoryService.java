@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ResepInMemoryService implements ResepService{
+public abstract class ResepInMemoryService implements ResepService{
     private List<ResepModel> listResep;
 
     // Constructor
@@ -25,12 +25,17 @@ public class ResepInMemoryService implements ResepService{
     }
 
     @Override
-    public ResepModel getResepByNomorResep(String noResep){
+    public ResepModel getResepByNomorResep(Long noResep){
         for(ResepModel resep : listResep){
             if(resep.getNoResep().equals(noResep)){
                 return resep;
             }
         }
+        return null;
+    }
+
+    @Override
+    public ResepModel updateResep(ResepModel resepModel){
         return null;
     }
 }
