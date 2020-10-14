@@ -36,4 +36,8 @@ public class ObatServiceImpl implements ObatService {
 
         return obatModel;
     }
+    @Override
+    public List<ObatModel> getObatByNamaDanBentuk(String nama, Integer bentuk) {
+        return obatDb.findObatByNamaDanBentuk(nama, bentuk);
+    }
 }

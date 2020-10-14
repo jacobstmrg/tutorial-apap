@@ -4,10 +4,13 @@ import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.model.ResepModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.util.*;
 
 import java.util.Optional;
 
 @Repository
 public interface ObatDb extends JpaRepository<ObatModel, Long> {
     Optional<ObatModel> findById(Long id);
+
+    List<ObatModel> findObatByNamaDanBentuk(String nama, Integer bentuk);
 }

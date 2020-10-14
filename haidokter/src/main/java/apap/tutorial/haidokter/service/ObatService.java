@@ -13,4 +13,6 @@ public interface ObatService{
     ObatModel getObatById(Long id);
 
     ObatModel updateObat(ObatModel obatModel);
+
+    List<ObatModel> getObatByNamaDanBentuk(String nama, Integer bentuk);
 }
