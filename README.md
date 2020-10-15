@@ -75,3 +75,25 @@ Resep tersebut saya tambahkan dengan link berikut "http://localhost:8080/resep/a
 ### What I did not understand
 -[]Apakah untuk membuat fitur dari fungsi program ini hanya dapat dilakukan didalam control? Atau ada cara lain untuk memodifikasi data yang ada?
 -[]Apa yang membedakan pertimbangan penggunaan dari Spring dan Django? Apakah ada keuntungan jika memakai Spring?
+
+## Tutorial 3
+### What I have learned today
+Hari ini saya mempelajari bagaimana membuat suatu database dengan XAMPP. Saya juga belajar pengolahan data dari database sehingga data dapat dimodifikasi.
+
+1. Pada class ObatDb, terdapat method findByNoResep, apakah kegunaan dari method tersebut?
+Method findByNoResep pada class ObatDb berguna untuk mencari record atau data resep yang berada pada database sesuai dengan NoResep yang sudah diberikan. Method ini dibuat secara otomatis oleh Springboot karena Spring Data akan menanalisis semua metode yang didefinisikan oleh interface dan akan mencoba untuk menghasilkan query pada method terkait ketika Spring Data membuat sebuah @Repository baru.
+
+2. Pada class ResepController, jelaskan perbedaan method addResepFormPage dan addResepSubmit?
+Method addResepFormPage digunakan untuk mengakses halaman untuk pendaftaran resep baru yang akan mengembalikan atau menampilkan html dari method tersebut. Method addResepFormPage dipanggil saat browser melakukan REQUEST untuk mengakses url /resep/add. 
+Method addResepSubmit digunakan untuk melakukan submit form yang ada pada halaman html dari url /resep/add. Method addResepSubmit mengambil data yang telah dimasukkan pada html form-add-resep, lalu data tersebut disimpan kedalam database. Method addResepSubmit dipanggil saat browser melakukan POST method.
+
+3. Jelaskan kegunaan dari JPA Repository!
+JPA Repository adalah sebuah spesifikasi yang terdiri atas API untuk menyimpan object ke dalam database relasional. JPA Repository akan melakukan pemetaan dari Java class ke dalam bentuk tabel relasional secara otomatis. JPA memiliki sebuah mapping subsystem untuk melakukan mapping antara class dengan relational table. JPA juga memiliki sebuah API EntityManager untuk mengakses objek, mendefinisikan dan mengeksekusikan query, dan lainnya. Developer akan lebih mudah untuk mengelola objek Java yang perlu dimasukkan kedalam database dengan menggunakan JPA Repository.
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara ResepModel dan ObatModel dibuat?
+ResepModel menggunakan anotasi @OneToMany yang berguna untuk mendefinisikan relasinya dengan tabel Obat yang diikuti dengan 'List<ObatModel> listObat' sebagai implementasi terhadap Java Objects. ObatModel menggunakan anotasi @ManyToOne yang berguna untuk mendefinisikan relasinya dengan tabel Resep hang diikuti dengan 'ResepModel resepModel' sebagai implementasinya dengan Java Object. Kedua model ini memudahkan dalam hal pengelolaan objek karena relasi sudah didefinisikan.
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!
+FetchType.LAZY memuat seluruh data dari Java Objects yang direferensikan ke relational database (fetch) saat dibutuhkan atau saat data dipanggil (LAZY). FetchType.LAZY digunakan untuk relasi one-to-many atau many-to-one
+CascadeType.ALL digunakan untuk memudahkan dalam melakukan operasi pada database dengan memberlakukan semua operasi yang dilakukan pada parent secara otomatis pada seluruh childnya.
+FetchType.EAGER memuat seluruh data dari Java Objects yang direferensikan ke relational database (fetch) secara langsung. FetchType.EAGER digunakan untuk relasi many-to-one atau one-to-one

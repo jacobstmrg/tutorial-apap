@@ -1,89 +1,115 @@
 package apap.tutorial.haidokter.controller;
 
+import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.model.ResepModel;
+import apap.tutorial.haidokter.service.ObatService;
 import apap.tutorial.haidokter.service.ResepService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import apap.tutorial.haidokter.service.ResepService;
 
 import java.util.List;
 
 @Controller
 public class ResepController {
+
+    @Qualifier("resepServiceImpl")
     @Autowired
     private ResepService resepService;
 
-    // routing url
-    @RequestMapping("/resep/add")
-    public String addResep(
-            //request parameter yang ingin dibawa
-            @RequestParam(value = "noResep", required = true) String noResep,
-            @RequestParam(value = "namaDokter", required = true) String namaDokter,
-            @RequestParam(value = "namaPasien", required = true) String namaPasien,
-            @RequestParam(value = "catatan", required = true) String catatan,
+    @Autowired
+    private ObatService obatService;
+
+    @GetMapping("/")
+    private String home(){
+        return "home";
+    }
+
+    @GetMapping("/resep/add")
+    public String addResepFormPage(Model model){
+        model.addAttribute("resep", new ResepModel());
+
+        return "form-add-resep";
+    }
+
+    @PostMapping("/resep/add")
+    public String addResepSubmit(
+            @ModelAttribute ResepModel resep,
             Model model
-
-                ){
-    // membuat objek ResepModel
-        ResepModel resep = new ResepModel(noResep, namaDokter, namaPasien, catatan);
-
-    // memanggil service addResep
+    ){
         resepService.addResep(resep);
-
-        model.addAttribute("nomorResep", noResep);
+        model.addAttribute("nomorResep", resep.getNoResep());
 
         return "add-resep";
     }
-    @RequestMapping("/resep/viewall")
-    public String listResep(Model model){
-        List<ResepModel> listResep = resepService.getResepList();
 
-        model.addAttribute("listResep", listResep);
-
-        return "viewall-resep";
-    }
-
-    @RequestMapping("/resep/view")
-    public String detailResep(
-            @RequestParam(value = "noResep") String noResep,
+    @GetMapping("/resep/change/{noResep}")
+    private String changeResepFormPage(
+            @PathVariable Long noResep,
             Model model){
         ResepModel resep = resepService.getResepByNomorResep(noResep);
-
         model.addAttribute("resep", resep);
 
-        return "view-resep";
+        return "form-update-resep";
     }
 
-    @RequestMapping("/resep/view/no-resep/{noResep}")
-    public String detailResepDenganPathVariable(
-        @PathVariable(value = "noResep") String noResep,
-        Model model){
+    @PostMapping("/resep/change")
+    private String changeResepFormSubmit(
+            @ModelAttribute ResepModel resep,
+            Model model){
+        ResepModel updatedResep = resepService.updateResep(resep);
+        model.addAttribute("resep", updatedResep.getNoResep());
+
+        return "update-resep";
+    }
+
+    @GetMapping("/resep/view")
+    public String viewDetailResep(
+            @RequestParam(value = "noResep") Long noResep,
+            Model model
+    ){
             ResepModel resep = resepService.getResepByNomorResep(noResep);
+            List<ObatModel> listObat = resep.getListObat();
+
             model.addAttribute("resep", resep);
+            model.addAttribute("listObat", listObat);
+
             return "view-resep";
     }
+    @GetMapping("/resep/viewall")
+    public String viewAll(
+            Model model) {
+        //Mendapatkan semua ResepModel
+        List<ResepModel> listResep = resepService.getResepList();
 
-    @RequestMapping("/resep/update/no-resep/{noResep}/catatan/{catatan}")
-    public String updateCatatan(
-        @PathVariable(value = "noResep") String noResep,
-        @PathVariable(value = "catatan") String catatan,
-        Model model){
-            ResepModel resep = resepService.getResepByNomorResep(noResep);
-            resep.setCatatan(catatan);
-            model.addAttribute("nomorResep", noResep);
-            return "update-catatan";
+        // Add variabel semua ResepModel ke 'listResep' untuk dirender pada thymeleaf
+        model.addAttribute("listResep", listResep);
+
+        //  Return view template yang ingin digunakan
+        return "viewall-resep";
     }
+    @PostMapping("/error")
+    public String error(
+            Model model){
+        return "error";
+    }
+    @GetMapping("resep/delete/{noResep}")
+    private String deleteResep(
+            @PathVariable Long noResep,
+            Model model){
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        model.addAttribute("nomorResep", resep.getNoResep());
+        if(resep.getListObat().isEmpty()){
+            resepService.deleteResep(resep);
 
-    @RequestMapping("/resep/delete/no-resep/{noResep}")
-    public String deleteResep(
-        @PathVariable(value = "noResep") String noResep,
-        Model model){
-            ResepModel resep = resepService.getResepByNomorResep(noResep);
-            resepService.getResepList().remove(resep);
-            model.addAttribute("nomorResep", noResep);
             return "delete-resep";
+        }
+        else{
+            return "error-delete-resep";
+        }
     }
 }
