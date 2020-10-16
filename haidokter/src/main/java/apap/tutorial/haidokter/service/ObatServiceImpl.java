@@ -21,8 +21,8 @@ public class ObatServiceImpl implements ObatService {
     }
 
     @Override
-    public void deleteObat(ObatModel obat){
-        obatDb.delete(obat);
+    public void deleteObatById(long idObat){
+        obatDb.deleteById(idObat);
     }
 
     @Override

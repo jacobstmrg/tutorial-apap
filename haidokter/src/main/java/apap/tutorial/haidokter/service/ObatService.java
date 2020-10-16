@@ -8,7 +8,7 @@ import java.util.List;
 public interface ObatService{
     void addObat(ObatModel obat);
 
-    void deleteObat(ObatModel obat);
+    void deleteObatById(long idObat);
 
     ObatModel getObatById(Long id);
 

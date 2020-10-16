@@ -3,17 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>View All Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <h2>Daftar Seluruh Resep</h2>
-    <div th:each="resep: ${listResep}">
-        <h3 th:text="'Nomor resep: '+ ${resep.noResep}"></h3>
-        <h3 th:text="'Nama dokter: '+ ${resep.namaDokter}"></h3>
-        <h3 th:text="'Nama pasien: '+ ${resep.namaPasien}"></h3>
-        <h3 th:text="'Catatan: '+ ${resep.catatan}"></h3>
-        <h3>--------------------------------------------</h3>
+<nav th:replace="fragments/fragment :: navbar('All Resep')"></nav>
+<section>
+    <h2>  Daftar Seluruh Resep</h2>
+    <div class="container-fluid">
+    <table class="table">
+        <thead>
+        <th>No Resep</th>
+        <th>Nama Dokter</th>
+        <th>Nama Pasien</th>
+        <th>Catatan</th>
+        <th>Aksi</th>
+        </thead>
+        <tbody>
+        <tr th:each="resep: ${listResep}">
+            <td th:text="${resep.noResep}"></td>
+            <td th:text="${resep.namaDokter}"></td>
+            <td th:text="${resep.namaPasien}"></td>
+            <td th:text="${resep.catatan}"></td>
+            <td>
+                <a th:href="@{/resep/view/} + ${resep.noResep}" class="btn btn-success">View</a>
+                <a th:href="@{/resep/delete/} + ${resep.noResep}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
     </div>
-    <br>
-    <a href="/">Home</a>
+</section>
 </body>
 </html>
