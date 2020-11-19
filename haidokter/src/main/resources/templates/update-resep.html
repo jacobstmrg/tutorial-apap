@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Update resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2 th:text="'Resep dengan nomor resep ' + ${resep} + ' berhasil diupdate. '"></h2>
-<a href="/">Kembali</a>
+    <nav th:replace="fragments/fragment :: navbar('Update Resep')"></nav>
+    <h2 th:text="'Resep dengan nomor resep ' + ${resep} + ' berhasil diupdate. '"></h2>
+    <a href="/resep/viewall" class="btn btn-success">Lihat semua resep</a>
 </body>
 </html>

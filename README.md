@@ -97,3 +97,21 @@ ResepModel menggunakan anotasi @OneToMany yang berguna untuk mendefinisikan rela
 FetchType.LAZY memuat seluruh data dari Java Objects yang direferensikan ke relational database (fetch) saat dibutuhkan atau saat data dipanggil (LAZY). FetchType.LAZY digunakan untuk relasi one-to-many atau many-to-one
 CascadeType.ALL digunakan untuk memudahkan dalam melakukan operasi pada database dengan memberlakukan semua operasi yang dilakukan pada parent secara otomatis pada seluruh childnya.
 FetchType.EAGER memuat seluruh data dari Java Objects yang direferensikan ke relational database (fetch) secara langsung. FetchType.EAGER digunakan untuk relasi many-to-one atau one-to-one
+
+## Tutorial 4
+### What I have learned today
+Pada tutorial ini, saya belajar bagaimana menggunakan Fragment yang merupakan sebuah fitur dalam Thymeleaf yang dapat menggunakan source code secara berulang pada halaman html. Saya juga belajar cara menghandle error yang lebih baik dengan membuat folder error berisi html sesuai dengan error yang akan ditangkap.
+
+1. Jelaskan perbedaan th:include dan th:replace!
+th:include dan th:replace adalah bentuk dari host tag yang akan mengimplementasikan bentuk fragment yang disediakan oleh Thymeleaf.
+th:replace akan menggantikan host tag dengan fragment sehingga posisi host tag akan sepenuhnya diubah dengan fragment, termasuk fragment tagnya.
+th: include akan memasukkan atau menambahkan fragment yang ditentukan pada body dari host tag, tetapi tidak termasuk fragment tagnya.
+
+2. Jelaskan apa fungsi dari th:object!
+th: digunakan untuk menyediakan URL dari form. th:object digunakan untuk menentukan objek yang akan diikat pada suatu form. th:object menampung object yang berasal dari controller. th:object mereferensikan model yang merepresentasikan state dari form yang dibuat.
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+* dan $ sama-sama digunakan untuk melakukan variable expression. Perbedaannya yaitu * tidak digunakan untuk melakukan expression pada keseluruhan dari variable maps, melainkan hanya pada selected object. Jika tidak terdapat selected object, maka fungsi dari * dan $ sama.
+
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+Untuk menyelesaikan latihan nomor 3, saya melakukan passing data dari html ke fragment Thymeleaf. Saya mengimplementasikan penggunaan fragment dengan atribut th::text pada elemen HTML dengan expression ${NamaPage}. Setelah itu saya mendefinisikan NamaPage dengan penggunaan th:replace pada halaman HTML yang diisi dengan judul halaman HTML tersebut.

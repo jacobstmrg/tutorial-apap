@@ -80,6 +80,16 @@ public class ResepController {
 
             return "view-resep";
     }
+    @RequestMapping("/resep/view/{noResep}")
+    public String detailResep(
+            @PathVariable(value = "noResep") Long noResep,
+            Model model){
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        model.addAttribute("resep", resep);
+        model.addAttribute("listObat", resep.getListObat());
+
+        return "view-resep";
+    }
     @GetMapping("/resep/viewall")
     public String viewAll(
             Model model) {
@@ -91,11 +101,6 @@ public class ResepController {
 
         //  Return view template yang ingin digunakan
         return "viewall-resep";
-    }
-    @PostMapping("/error")
-    public String error(
-            Model model){
-        return "error";
     }
     @GetMapping("resep/delete/{noResep}")
     private String deleteResep(

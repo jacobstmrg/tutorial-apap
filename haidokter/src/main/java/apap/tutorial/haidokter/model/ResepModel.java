@@ -68,6 +68,9 @@ public class ResepModel implements Serializable {
     public List<ObatModel> getListObat() {
         return listObat;
     }
+    public void addObat(ObatModel obat) {
+        this.listObat.add(obat);
+    }
 
     public void setListObat(List<ObatModel> listObat) {
         this.listObat = listObat;

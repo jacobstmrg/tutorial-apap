@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete Obat</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <h2 th:text="'Obat dengan Id ' + ${id} + ' berhasil dihapus. '"></h2>
-    <a href="/">Home</a>
+    <nav th:replace="fragments/fragment :: navbar('Delete Obat')"></nav>
+    <div class="container-fluid">
+        <h3 th:text="${obatCount} + ' Obat telah berhasil dihapus'"></h3>
+    </div>
 </body>
 </html>
