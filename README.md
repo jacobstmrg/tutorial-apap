@@ -115,3 +115,15 @@ th: digunakan untuk menyediakan URL dari form. th:object digunakan untuk menentu
 
 4. Bagaimana kamu menyelesaikan latihan nomor 3?
 Untuk menyelesaikan latihan nomor 3, saya melakukan passing data dari html ke fragment Thymeleaf. Saya mengimplementasikan penggunaan fragment dengan atribut th::text pada elemen HTML dengan expression ${NamaPage}. Setelah itu saya mendefinisikan NamaPage dengan penggunaan th:replace pada halaman HTML yang diisi dengan judul halaman HTML tersebut.
+
+## Tutorial 5
+### What I have learned today
+Pada tutorial kali ini, saya belajar bagaimana cara kerja dari Web Service. Saya juga mempelajari bagaimana cara menggunakan postman, dan membuat mock server beserta fungsi dan kegunaannya.
+
+1. Apa itu Postman? Apa kegunaannya?
+Postman adalah sebuah develompent tool API yang dapat digunakan untuk melakukan proses develompent API. Postman juga dapat digunakan untuk melakukan build, test, desain, mock, debug, testing, memonitor, menyimpan HTTP request, dan menampilkan API pada suatu tempat.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+@JsonIgnoreProperties 
+3. Apa kegunaan atribut WebClient?
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
