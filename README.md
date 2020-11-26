@@ -133,3 +133,35 @@ RestServiceImpl memanfatkan atribut WebClient untuk menerima dan mengirimkan dar
 4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
 ResponseEntity adalah perwakilan dari seluruh respons HTTP. ResponseEntity digunakan untuk mengontrol apapun yang masuk ke dalam bagian HTTP seperti kode status, header, dan body.
 BindingResult adalah objek Spring yang digunakan untuk menyimpan hasil validasi dan pengikatan yang berisi kesalahan yang terjadi. BindingResult menentukan bagaimana objek yang menyimpan hasil validasi harus menyimpan dan mengambil hasil validasi.
+
+## Tutorial 5
+### What I have learned today
+Pada tutorial kali ini, saya belajar bagaimana menambahkan security pada suatu website. Saya belajar bagaimana fitur login dan logout bekerja, dan bagaimana untuk menyimpan data-data yang boleh atau tidak boleh dilihat oleh user tertentu.
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda
+buat) konsep tersebut diimplementasi?
+Otentifikasi merupakan proses untuk melakukan verifikasi yang menentukan apakah user yang ingin login dengan username tersebut telah terdaftar di dalam database.
+Berikut adalah cotoh kode implementasi dari otentifikasi:
+    pada class WebSecurityConfig:
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());}
+Otorisasi berfungsi untuk mengetahui hak terhadap suatu user yang menentukan apakah user tersebut memiliki akses atau dapat melakukan perubahan terhadap halaman tertentu yang sudah diotentifikasi.
+Berikut adalah cotoh kode implementasi dari otorisasi:
+    pada class WebSecurityConfig:
+        .antMatchers("/css/**").permitAll()
+        .antMatchers("/js/**").permitAll()
+        .antMatchers("/resep/**").hasAnyAuthority("APOTEKER")
+        .antMatchers("/obat/**").hasAnyAuthority("APOTEKER")
+    pada html:
+        sec:authorize="hasAuthority('ADMIN')"
+        sec:authorize="hasAuthority('APOTEKER')"
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+BCryptPasswordEncoder adalah algoritma hash password default untuk OpenBSD dan sistem lain. BCryptPasswordEncoder berfungsi untuk melakukan encrypt password user sebelum disimpan ke database. BCryptPasswordEncoder melakukan enkripsi data password yang diinput oleh user sehingga password yang terlihat pada database merupakan password yang sudah dienkripsi.
+
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+UUID adalah kode identifikasi unik yang digenerate oleh sistem berbentuk 32 karakter string yang dibuat secara acak dengan algoritma tertentu. UUID berguna untuk meningkatkan keamanan dari data user karena id yang digenerate secara unik aman dan sulit untuk diretas.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserServiceImpl.java?
+class UserDetailsServiceImpl.java digunakan untuk mengambil informasi otentikasi dan otorisasi user. Hal ini dilakukan agar Spring Boot Security dapat melakukan otorisasi terhadap user yang melakukan login sesuai dengan role yang telah terdaftar pada database.
