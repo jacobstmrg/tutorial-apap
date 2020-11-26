@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -9,6 +9,7 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar('Home')"></nav>
 <div class="container-fluid">
+    <h2 th:text="'Hello '+ ${#httpServletRequest.remoteUser} + ' !'">Login as</h2>
     <h2>Selamat datang di HaiDokter!</h2>
     <a th:href="@{/resep/viewall}" class="btn btn-success">Lihat semua resep</a>
     <a th:href="@{resep/add}" class="btn btn-outline-success">Tambah resep</a>
@@ -31,6 +32,29 @@
                                 Cari
                             </button>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" sec:authorize="hasAuthority('ADMIN')">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Tambah User Baru</div>
+                <div class="card-body">
+                    <form th:action="@{/user/addUser}" method="POST">
+                        <label>User Name</label>
+                        <input type="text" name="username" class="form-control">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control">
+                        <label>Role</label>
+                        <select name="role" class="form-control">
+                            <option selected value="">-- Pilih Role --</option>
+                            <option th:each="role :${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
+                        </select>
+                        <span style="color: red" th:text="${warning}"></span>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>
