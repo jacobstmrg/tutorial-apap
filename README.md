@@ -115,3 +115,21 @@ th: digunakan untuk menyediakan URL dari form. th:object digunakan untuk menentu
 
 4. Bagaimana kamu menyelesaikan latihan nomor 3?
 Untuk menyelesaikan latihan nomor 3, saya melakukan passing data dari html ke fragment Thymeleaf. Saya mengimplementasikan penggunaan fragment dengan atribut th::text pada elemen HTML dengan expression ${NamaPage}. Setelah itu saya mendefinisikan NamaPage dengan penggunaan th:replace pada halaman HTML yang diisi dengan judul halaman HTML tersebut.
+
+## Tutorial 5
+### What I have learned today
+Pada tutorial kali ini, saya belajar bagaimana cara kerja dari Web Service. Saya juga mempelajari bagaimana cara menggunakan postman, dan membuat mock server beserta fungsi dan kegunaannya.
+
+1. Apa itu Postman? Apa kegunaannya?
+Postman adalah sebuah develompent tool API yang dapat digunakan untuk melakukan proses develompent API. Postman juga dapat digunakan untuk melakukan build, test, desain, mock, debug, testing, memonitor, menyimpan HTTP request, dan menampilkan API pada suatu tempat.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+@JsonIgnoreProperties digunakan pada tingkat kelas untuk menandai properti atau daftar properti yang akan diabaikan @JsonIgnoreProperties memiliki elemen yaitu allowGetters, allowSetters, ignoreUnknown, dan value. Nilai elemen di @JsonIgnoreProperties menentukan nama properti yang akan diabaikan.
+@JsonProperty adalah anotasi marker untuk mendefinisikan logical propety. @JsonProperty dapat dianotasi dengan metode setter atau getter non-static atau non-static ob. Logical property digunakan dalam serialisasi dan de-serialisasi JSON.
+
+3. Apa kegunaan atribut WebClient?
+RestServiceImpl memanfatkan atribut WebClient untuk menerima dan mengirimkan dari resource URI menggunakan akses yang diberikan dalam WebRequest Class.
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+ResponseEntity adalah perwakilan dari seluruh respons HTTP. ResponseEntity digunakan untuk mengontrol apapun yang masuk ke dalam bagian HTTP seperti kode status, header, dan body.
+BindingResult adalah objek Spring yang digunakan untuk menyimpan hasil validasi dan pengikatan yang berisi kesalahan yang terjadi. BindingResult menentukan bagaimana objek yang menyimpan hasil validasi harus menyimpan dan mengambil hasil validasi.
