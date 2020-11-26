@@ -52,14 +52,15 @@
                             <option selected value="">-- Pilih Role --</option>
                             <option th:each="role :${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
                         </select>
-                        <span style="color: red" th:text="${warning}"></span>
                         <br>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
+                <p th:text="${notif}"></p>
             </div>
         </div>
     </div>
+    <a th:href="@{/user/changePassword}" class="btn btn-outline-success">Change Password</a>
 </div>
 <!--    <h2>Selamat datang di HaiDokter!</h2>-->
 <!--    <h3>Tambah Resep</h3>-->
