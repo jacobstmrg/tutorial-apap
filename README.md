@@ -165,3 +165,37 @@ UUID adalah kode identifikasi unik yang digenerate oleh sistem berbentuk 32 kara
 
 4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserServiceImpl.java?
 class UserDetailsServiceImpl.java digunakan untuk mengambil informasi otentikasi dan otorisasi user. Hal ini dilakukan agar Spring Boot Security dapat melakukan otorisasi terhadap user yang melakukan login sesuai dengan role yang telah terdaftar pada database.
+
+## Tutorial 6
+### What I have learned today
+Pada tutorial kali ini saya mempelajari lebih banyak bagaimana menggunakan react.js dan mengaplikasikannya untuk membuat fungsi dan fitur.
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi
+dari apa yang Anda jelaskan.
+Pada latihan nomor 1, saya menambahkan type pada input sehingga bersifat hidden ketika tidak dalam status 'checked'. Ketika input berstatus 'checked', maka checkbox akan ditampilkan.
+screenshot: https://ibb.co/nLKThQf
+
+Pada latihan nomor 2, saya menambahkan function yang digunakan untuk menghandle event onClick yang mengubah array favItems menjadi kosong bernama deleteAll. Kemudian saya membuat tombol Delete All Favorites yang memiliki kondisi ketika favItems kosong, maka tombol tersebut tidak ditampilkan.
+screenshot: https://ibb.co/gtCTrtS
+
+Pada latihan nomor 3, saya membuat method bernama handleFavoriteClick yang berfungsi untuk menghapus item dari favItems dengan method .splice. Pada function handleItemClick, saya juga membuat agar list film pada bagian kiri tidak dapat digunakan untuk menghilangkan list favorite, melainkan hanya dapat menambahkannya saja.
+screenshot: https://ibb.co/6D5CMVC
+
+Pada latihan nomor 4, saya membuat toggle button yang digunakan untuk mengontrol state yang berisi boolean. State ini akan menentukan apakah list dari film favorit ditampilkan atau tidak. Saya memberikan fungsi toggleFavorite() yang mengubah isi dari state.
+screenshot: https://ibb.co/374t43w
+
+Pada latihan nomor 5, saya membuat component yang bernama EmptyState dan membuat variable let untuk menyimpan komponen tersebut. Setelah itu saya memberikan kondisi dimana variable itu akan dilemparkan dengan keberadaan {emptyState} jika tidak terdapat item favorit.
+screenshot: https://ibb.co/dkz82xd
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+State merupakan data yang berubah secara konstan dengan perilaku program. Contoh dari state yang diterapkan di tutorial ini adalah pada favItems. favItems akan berubah sesuai dengan penambahan ataupun pengurangan item yang di klik pada daftar list favitems.
+Props adalah parameter dalam suatu functional component. Jika suatu component berbentuk class, maka prop merupakan property dari classnya. Prop digunakan untuk komunikasi antar parent dan childnya. Contoh props pada tutorial ini adalah item pada function handleItemClick = item
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+Keuntungan menggunakan component (e.g. List, Item) adalah komponen bersifat reusable. Setiap komponen memiliki logika sendiri untuk mengontrol proses renderingnya,tidak perlu menggunakan this dan tidak perlu melakukan bind. Contohnya adalah ketika memisahkan komponen list dan item. List digunakan untuk mengelola list film favourite, sedangkan item digunakan untuk mengelola list film. dengan memisahkan keduanya, code dapat menjadi lebih rapih.
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+Menggunakan react memiliki banyak keuntungan dalam mengembangkan sebuah web. Komponen yang digunakan menjadi reusable, proses rendering akan lebih cepat karena adanya virtual DOM, terdapat developer toolset untuk pengimplementasian yang lebih mudah, SEO friendly, dan masih banyak lagi.
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+Menurut saya, kekurangan dari menggunakan React adalah beberapa browser dengan versi yang sudah lama tidak compatible sehingga harus menggunakan extension, ReactJS hanya mencakup lapisan dari User Interface, dan bahasa pemrograman yang terasa lebih sulit jika tidak pernah menggunakannya.
