@@ -134,7 +134,7 @@ RestServiceImpl memanfatkan atribut WebClient untuk menerima dan mengirimkan dar
 ResponseEntity adalah perwakilan dari seluruh respons HTTP. ResponseEntity digunakan untuk mengontrol apapun yang masuk ke dalam bagian HTTP seperti kode status, header, dan body.
 BindingResult adalah objek Spring yang digunakan untuk menyimpan hasil validasi dan pengikatan yang berisi kesalahan yang terjadi. BindingResult menentukan bagaimana objek yang menyimpan hasil validasi harus menyimpan dan mengambil hasil validasi.
 
-## Tutorial 5
+## Tutorial 6
 ### What I have learned today
 Pada tutorial kali ini, saya belajar bagaimana menambahkan security pada suatu website. Saya belajar bagaimana fitur login dan logout bekerja, dan bagaimana untuk menyimpan data-data yang boleh atau tidak boleh dilihat oleh user tertentu.
 
@@ -166,7 +166,7 @@ UUID adalah kode identifikasi unik yang digenerate oleh sistem berbentuk 32 kara
 4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserServiceImpl.java?
 class UserDetailsServiceImpl.java digunakan untuk mengambil informasi otentikasi dan otorisasi user. Hal ini dilakukan agar Spring Boot Security dapat melakukan otorisasi terhadap user yang melakukan login sesuai dengan role yang telah terdaftar pada database.
 
-## Tutorial 6
+## Tutorial 7
 ### What I have learned today
 Pada tutorial kali ini saya mempelajari lebih banyak bagaimana menggunakan react.js dan mengaplikasikannya untuk membuat fungsi dan fitur.
 
@@ -199,3 +199,47 @@ Menggunakan react memiliki banyak keuntungan dalam mengembangkan sebuah web. Kom
 
 5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
 Menurut saya, kekurangan dari menggunakan React adalah beberapa browser dengan versi yang sudah lama tidak compatible sehingga harus menggunakan extension, ReactJS hanya mencakup lapisan dari User Interface, dan bahasa pemrograman yang terasa lebih sulit jika tidak pernah menggunakannya.
+
+## Tutorial 8
+### What I have learned today
+Pada tutorial kali ini saya belajar bagaimana menghubungkan backend dengan frontend. Saya belajar melakukan refactor aplikasi HaiDokter menggunakan ReactJS dengan fitur yang sudah ada pada backend.
+
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+Pada latihan pertama, saya melakukan setstate yang membuat value dari namaDokter, namaPasien, dan catatan menjadi kosong. Saya menambahkan beberapa baris pada kode event handleCancel menjadi seperti berikut.
+
+handleCancel(event) {
+        event.preventDefault();
+        this.setState({  
+            namaDokter: "",
+            namaPasien: "",
+            catatan: "",
+            isCreate: false, 
+            isEdit: false });
+    }
+
+Hal tersebut membuat value dari setiap form field tersebut kembali seperti sebelum diisi.
+
+
+2. Jelaskan fungsi dari async dan await!
+Async membuat suatu fungsi menjadi asynchronus. Hal ini berfungsi untuk secara otomatis mengembalikan sebuah return value berupa objek dengan bentuk atau tipe Promise.
+Await memberi tahu program untuk keluar secara sementara dari fungsi async, kemudian menjalankan langkah-langkah selanjutnya.
+Untuk dapat menggunakan await, fungsi tersebut harus ditandai dengan keyword async.
+
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 8 pada Component Lifecycle pada pertanyaan ini.
+![alt text](https://i.ibb.co/syS4WzN/3.png)
+![alt text](https://i.ibb.co/WpwjD2Q/8.png)
+![alt text](https://i.ibb.co/pW7GtLM/axios-8.png)
+![alt text](https://i.ibb.co/12B6XCH/axios-12.png)
+![alt text](https://i.ibb.co/54J9gT2/axios-13.png)
+
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+
+componentDidMount: Berfungsi untuk menandakan tahap akhir dari mounting lifecycle yang dipanggil setelah HTML yang dilakukan render telah selesai melakukan loading. Fungsi ini dipanggil saat HTML selesai melakukan rendering dan dapat juga digunakan ketika React ingin mengambil data dari aplikasi eksternal. Use case: Request data dari API
+
+shouldComponentUpdate: Berfungsi untuk menentukan apakah sebuah component akan di render kembali atau tidak. Fungsi ini dipanggil saat terdapat komponen yang diperbarui setelah berjalannya method componentWillReceiveProps tetapi sebelum proses rendering html dilakukan. Use case: Ketika ingin mengubah komponen dan melakukan rendering ulang terhadap setiap state yang berubah
+
+componentDidUpdate: Berfungsi untuk memanipulasi DOM data request data. Dipanggil saat suatu instance pada suatu komponen melakukan update dan ketika HTML yang dilakukan proses render telah selesai melakukan loading. Use case: Melakukan update pada komponen
+
+componentWillReceiveProps: Berfungsi untuk memberi tahu React jika akan ada perubahan pada komponen yang memiliki props. Fungsi ini dipanggil saat suatu instance pada suatu komponen melakukan update dan sebelum proses rendering dimulai. Use case: Melakukan reset state
+
+componentWillUnmount: Berfungsi untuk melakukan pembersihan yang diperlukan pada method. Fungsi ini dipanggil ketika komponen telah dihapus dari DOM. Use case: Menghilangkan timer yang sebelumnya didefinisikan pada componentDidMount
